@@ -13,6 +13,8 @@
     <string name="calender">Calender</string>
     <string name="fun">Fun</string>
     <string name="go">Go</string>
+    <string name="show_comment">Vis kommentar</string>
+    <string name="write_comment">Skriv kommentar</string>
     
     <!-- Reklame - næste arrangement -->
     <string name="next_event">Næste arrangement</string>

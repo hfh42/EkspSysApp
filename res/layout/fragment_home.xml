@@ -1,56 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
-        android:id="@+id/frag_home_next_event"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/frag_home_next_event"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next_event" />
+            android:orientation="vertical" >
 
-        <TextView
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next_event" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next_event_date" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next_event_7_tilmeldte" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/next_event_tilmeld" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/go" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/frag_home_svamp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next_event_date" />
+            android:orientation="vertical" >
 
-        <TextView
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Svampe tur" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/svamp01" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/frag_home_show_comments_svamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showCommentSvamp"
+                    android:text="@string/show_comment" />
+
+                <Button
+                    android:id="@+id/frag_home_write_comments_svamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="writeCommentSvamp"
+                    android:text="@string/write_comment" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/frag_home_bio"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next_event_7_tilmeldte" />
+            android:orientation="vertical" >
 
-        <TextView
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Biograf tur" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/svamp01" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/frag_home_show_comments_bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="showCommentBio"
+                    android:text="@string/show_comment" />
+
+                <Button
+                    android:id="@+id/frag_home_write_comments_bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="writeCommentBio"
+                    android:text="@string/write_comment" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/next_event_tilmeld" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/go" />
+            android:layout_height="2dp"
+            android:background="#000000" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/frag_home_svamp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Svampe tur" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/svamp01" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

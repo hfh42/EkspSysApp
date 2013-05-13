@@ -6,29 +6,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity {
+public class CalenderActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_calender);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.calender, menu);
 		return true;
 	}
 	
-	public void gotoCalender(View view){
-		Intent intent = new Intent(this, CalenderActivity.class);
+
+	public void gotoHome(View view){
+		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);		
 	}
-
+	
 	public void gotoFun(View view){
 		Intent intent = new Intent(this, FunActivity.class);
-		startActivity(intent);	
+		startActivity(intent);		
 	}
 
 }

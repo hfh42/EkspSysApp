@@ -7,9 +7,9 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context=".MainActivity" >
+    tools:context=".CalenderActivity" >
 
-   <LinearLayout
+    <LinearLayout
         android:id="@+id/main_ikons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -19,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="gotoHome"
             android:text="@string/home" />
 
         <Button
@@ -26,7 +27,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="gotoCalender"
             android:text="@string/calender" />
 
         <Button
@@ -43,10 +43,9 @@
         android:layout_height="2dp"
         android:background="#000000" />
 
-    <fragment
-        android:id="@+id/main_fragment"
-        android:name="dani.leahele.EkspSysApp.HomeFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
 
 </LinearLayout>

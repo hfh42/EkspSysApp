@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context=".MainActivity" >
+    android:orientation="vertical"
+    tools:context=".CalenderActivity" >
 
     <LinearLayout
         android:id="@+id/main_ikons"
@@ -19,15 +19,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/home" />
+            android:text="@string/home"
+            android:onClick="gotoHome" />
 
         <Button
             android:id="@+id/main_calender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calender"
-            android:onClick="gotoCalender" />
+            android:text="@string/calender" />
 
         <Button
             android:id="@+id/main_fun"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/fun" 
-            android:onClick="gotoFun" />
+            android:onClick="gotoFun"/>
     </LinearLayout>
     
     <View 

@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="net.haagh.ekspsysapp.CalenderActivity"
+            android:label="@string/title_activity_calender" >
+        </activity>
+        <activity
+            android:name="net.haagh.ekspsysapp.FunActivity"
+            android:label="@string/title_activity_fun" >
+        </activity>
     </application>
 
 </manifest>

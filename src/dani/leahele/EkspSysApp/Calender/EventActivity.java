@@ -1,5 +1,10 @@
 package dani.leahele.EkspSysApp.Calender;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 import android.app.Activity;
@@ -10,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import dani.leahele.EkspSysApp.Constants;
 import dani.leahele.EkspSysApp.FunActivity;
 import dani.leahele.EkspSysApp.MainActivity;
 import dani.leahele.EkspSysApp.R;
@@ -20,7 +26,7 @@ public class EventActivity extends Activity {
 
 	private boolean isRegistered = false;
 	private boolean isMaybe = false;
-	private String owner = "Vivi Pedersen";
+	private String owner = Constants.OWNER;
 
 	private LinearLayout registered;
 	private LinearLayout maybes;
@@ -51,6 +57,15 @@ public class EventActivity extends Activity {
 
 		addTextViews(registered, event.getRegistered());
 		addTextViews(maybes, event.getMaybeRegistered());
+		
+		isMaybe = event.getRegistered().contains(Constants.OWNER);
+		isRegistered = event.getRegistered().contains(Constants.OWNER);
+		
+		Button b = (Button) findViewById(R.id.event_signup);
+		if(isRegistered){
+			b.setText("Afmeld");
+		}
+		
 	}
 
 	private void addTextViews(LinearLayout ll, List<String> items) {
@@ -70,16 +85,19 @@ public class EventActivity extends Activity {
 	}
 
 	public void gotoHome(View view) {
+		saveEvent();
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoCalender(View view) {
+		saveEvent();
 		Intent intent = new Intent(this, CalenderActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoFun(View view) {
+		saveEvent();
 		Intent intent = new Intent(this, FunActivity.class);
 		startActivity(intent);
 	}
@@ -103,6 +121,10 @@ public class EventActivity extends Activity {
 			b.setText("Afmeld");
 		}
 		isRegistered = !isRegistered;
+		
+		event.isMaybe = isMaybe;
+		event.isRegistered = isRegistered;
+		saveEvent();
 	}
 
 	public void signupMaybe(View view) {
@@ -126,6 +148,45 @@ public class EventActivity extends Activity {
 		}
 		isMaybe = !isMaybe;
 
+		event.isMaybe = isMaybe;
+		event.isRegistered = isRegistered;
+		saveEvent();
+	}
+
+	private void saveEvent() {
+		System.out.println("!!!!! Event " + event.title + ": " + event.getRegistered());
+		
+		// Create file
+		File fileDir = getFilesDir();
+		
+		System.out.println("!!!!! files : " + fileDir.listFiles().length);
+		
+		File[] files = fileDir.listFiles(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String filename) {
+				return filename.equals(event.title);
+			}
+		});
+		if (files.length != 0) {
+			System.out.println("!!!! No such file");
+			for(File f : files){
+				f.delete();
+			}
+		}
+		
+		File file = new File(fileDir, event.title);
+
+		// Save recipe in file
+		FileOutputStream fout;
+		try {
+			fout = new FileOutputStream(file);
+			ObjectOutputStream out = new ObjectOutputStream(fout);
+			out.writeObject(event);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

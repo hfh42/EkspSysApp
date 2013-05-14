@@ -66,23 +66,42 @@
                 android:text="Dato" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=", kl. " />
+
+            <TextView
                 android:id="@+id/event_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=", kl." />
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tilmeldningsfrist: " />
+            <TextView
+                android:id="@+id/event_frist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/event_frist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tilmeldningsfrist:" />
-
+            android:text="Information:" />
+        
         <TextView
             android:id="@+id/event_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Information:" />
+            android:text="" />
 
         <View
             android:layout_width="fill_parent"

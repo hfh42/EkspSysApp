@@ -39,7 +39,7 @@ public class CalenderActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calender);
-
+		
 		createHardcodedEvents();
 		fragmentManager = getFragmentManager();
 
@@ -52,9 +52,6 @@ public class CalenderActivity extends Activity implements
 	public void onStart() {
 		super.onStart();
 		loadEvents();
-		for (Event e : events) {
-			System.out.println("!!!!! " + e.title + ": " + e.getRegistered());
-		}
 	}
 
 	@Override
@@ -75,6 +72,12 @@ public class CalenderActivity extends Activity implements
 	}
 
 	private void createHardcodedEvents() {
+		File folder = getFilesDir();
+		if(folder.list().length > 0){
+			return;
+		}
+		
+		System.out.println("!! creating events from scratch ");
 		Event e1 = new Event("Vin smagning", "3. juni", "kl. 15:00", "25. maj",
 				20, "Vi mødes foran Resturant Substabs kl. 14.50");
 		Event e2 = new Event("Fredagsbar", "20. juni", "kl. 14:00", "", 0,
@@ -128,6 +131,7 @@ public class CalenderActivity extends Activity implements
 		events = new ArrayList<Event>();
 
 		// Get saved files containing recipes
+		System.out.println("!!!! directory " + getFilesDir());
 		File fileDir = getFilesDir();
 		File[] files = fileDir.listFiles();
 

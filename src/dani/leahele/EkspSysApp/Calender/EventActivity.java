@@ -159,6 +159,8 @@ public class EventActivity extends Activity {
 		// Create file
 		File fileDir = getFilesDir();
 		
+		System.out.println(" !!! next file dir " + getFilesDir());
+		
 		System.out.println("!!!!! files : " + fileDir.listFiles().length);
 		
 		File[] files = fileDir.listFiles(new FilenameFilter() {
@@ -184,6 +186,7 @@ public class EventActivity extends Activity {
 			ObjectOutputStream out = new ObjectOutputStream(fout);
 			out.writeObject(event);
 			out.close();
+			System.out.println(" !! Writter file to disk !! ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -14,7 +14,7 @@ public class Event implements Serializable{
 	public final String singupDate;
 	public final int price;
 	public final String info;
-	
+		
 	private List<String> registered = new ArrayList<String>();
 	private List<String> maybes = new ArrayList<String>();
 	

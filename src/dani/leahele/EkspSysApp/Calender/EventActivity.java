@@ -106,12 +106,10 @@ public class EventActivity extends Activity {
 	}
 
 	public void signupMaybe(View view) {
-		Button m = (Button) findViewById(R.id.event_signup_maybe);
 		Button r = (Button) findViewById(R.id.event_signup);
 		if (isMaybe) {
 			event.unMaybeRegister(owner);
 			addTextViews(maybes, event.getMaybeRegistered());
-			
 		} else {
 			if (!isRegistered) {
 				event.maybeRegister(owner);

@@ -22,5 +22,6 @@
     <string name="next_event_7_tilmeldte">7 tilmeldte</string>
     <string name="next_event_tilmeld">Tilmeld dig nu</string>
     <string name="title_activity_write">WriteActivity</string>
+    <string name="title_activity_event">EventActivity</string>
 
 </resources>

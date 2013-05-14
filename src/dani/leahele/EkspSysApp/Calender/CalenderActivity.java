@@ -65,6 +65,12 @@ public class CalenderActivity extends Activity implements OnEventSelectedListene
 				"25. maj", 20, "Vi mødes foran Resturant Substabs kl. 14.50");
 		Event e2 = new Event("Fredagsbar", "20. juni", "kl. 14:00", "", 0,
 				"Fredags cafe ;)");
+		
+		e1.register("Louise Jensen");
+		e1.register("Niels Hansen");
+		e2.register("Martin Winter");
+		e1.maybeRegister("Lone Larsen");
+		e2.maybeRegister("George Gren");
 
 		events.add(e1);
 		events.add(e2);

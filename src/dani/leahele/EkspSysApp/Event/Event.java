@@ -2,6 +2,7 @@ package dani.leahele.EkspSysApp.Event;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Event implements Serializable{
 	
@@ -14,7 +15,8 @@ public class Event implements Serializable{
 	public final int price;
 	public final String info;
 	
-	private ArrayList<String> registered = new ArrayList<String>();
+	private List<String> registered = new ArrayList<String>();
+	private List<String> maybes = new ArrayList<String>();
 	
 	public Event(String title, String date, String time, String signupDate, int price, String info){
 		this.title = title;
@@ -29,12 +31,28 @@ public class Event implements Serializable{
 		registered.add(name);
 	}
 	
-	public ArrayList<String> getRegistered(){
+	public void unRegister(String name){
+		registered.remove(name);
+	}
+	
+	public List<String> getRegistered(){
 		return registered;
 	}
 	
 	public int numOfRegistered(){
 		return registered.size();
+	}
+	
+	public void maybeRegister(String name){
+		maybes.add(name);
+	}
+	
+	public void unMaybeRegister(String name){
+		maybes.remove(name);
+	}
+	
+	public List<String> getMaybeRegistered(){
+		return maybes;
 	}
 
 }

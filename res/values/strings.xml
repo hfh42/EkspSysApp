@@ -6,8 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_calender">CalenderActivity</string>
     <string name="title_activity_fun">FunActivity</string>
-    
-    
+
     <!-- Button text -->
     <string name="home">Home</string>
     <string name="calender">Calender</string>
@@ -15,12 +14,13 @@
     <string name="go">Go</string>
     <string name="show_comment">Vis kommentar</string>
     <string name="write_comment">Skriv kommentar</string>
-    
+
     <!-- Reklame - næste arrangement -->
     <string name="next_event">Næste arrangement</string>
     <string name="next_event_title">Vin smagning</string>
     <string name="next_event_date">3. juni kl. 15:00</string>
     <string name="next_event_7_tilmeldte">7 tilmeldte</string>
     <string name="next_event_tilmeld">Tilmeld dig nu</string>
+    <string name="title_activity_write">WriteActivity</string>
 
 </resources>

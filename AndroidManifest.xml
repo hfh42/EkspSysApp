@@ -30,6 +30,10 @@
             android:name="dani.leahele.EkspSysApp.FunActivity"
             android:label="@string/title_activity_fun" >
         </activity>
+        <activity
+            android:name="dani.leahele.EkspSysApp.WriteActivity"
+            android:label="@string/title_activity_write" >
+        </activity>
     </application>
 
 </manifest>

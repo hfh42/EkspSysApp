@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void saveComments(ArrayList<String> comments, String name) {
-		System.out.println("save");
+		
 		// Create file
 		File fileDir = getFilesDir();
 		File recipefile = new File(fileDir, name);
@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private ArrayList<String> loadComments(String name) {
-		System.out.println("Load");
+		
 		// Clear data
 		ArrayList<String> comments = new ArrayList<String>();
 
@@ -167,7 +167,6 @@ public class MainActivity extends Activity {
 
 		// Check whether there we have any files
 		if (files.length != 0) {
-			System.out.println("Files found");
 			FileInputStream fin;
 			try {
 				for (File f : files) {

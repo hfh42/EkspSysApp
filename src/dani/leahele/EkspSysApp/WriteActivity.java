@@ -23,7 +23,7 @@ public class WriteActivity extends Activity {
 	}
 	
 	public void sendComment(View view){
-		System.out.println("test");
+		System.out.println("!!!!!!! test");
 		TextView comment = (TextView) findViewById(R.id.write_comment);
 		String s = comment.getText().toString();
 		Intent i = new Intent();

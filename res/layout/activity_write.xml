@@ -22,7 +22,8 @@
         android:id="@+id/write_comment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:layout_below="@id/write_button" />
 
     
 </RelativeLayout>

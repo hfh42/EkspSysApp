@@ -2,11 +2,9 @@ package dani.leahele.EkspSysApp.Calender;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.annotation.TargetApi;
@@ -77,9 +75,9 @@ public class CalenderActivity extends Activity implements
 			return;
 		}
 		
-		Event e1 = new Event("Vin smagning", "3. juni", "kl. 15:00", "25. maj",
+		Event e1 = new Event("Vin smagning", "3. juni",154, "kl. 15:00", "25. maj",
 				20, "Vi mødes foran Resturant Substabs kl. 14.50");
-		Event e2 = new Event("Fredagsbar", "20. juni", "kl. 14:00", "", 0,
+		Event e2 = new Event("Fredagsbar", "20. juni",171, "kl. 14:00", "", 0,
 				"Fredags cafe ;)");
 
 		e1.register("Louise Jensen");
@@ -90,26 +88,11 @@ public class CalenderActivity extends Activity implements
 
 		events.add(e1);
 		events.add(e2);
-		saveEvent(e1);
-		saveEvent(e2);
-	}
+		Collections.sort(events);
 
-	private void saveEvent(Event event) {
-
-		// Create file
 		File fileDir = getFilesDir();
-		File file = new File(fileDir, event.title);
-
-		// Save recipe in file
-		FileOutputStream fout;
-		try {
-			fout = new FileOutputStream(file);
-			ObjectOutputStream out = new ObjectOutputStream(fout);
-			out.writeObject(event);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		e1.save(fileDir);
+		e2.save(fileDir);
 	}
 
 	@Override
@@ -146,6 +129,7 @@ public class CalenderActivity extends Activity implements
 				e.printStackTrace();
 			}
 		}
+		Collections.sort(events);
 		eventfrag.setEventList(events);
 	}
 

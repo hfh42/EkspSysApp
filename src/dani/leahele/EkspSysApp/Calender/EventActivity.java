@@ -1,9 +1,6 @@
 package dani.leahele.EkspSysApp.Calender;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.List;
 
 import android.app.Activity;
@@ -29,6 +26,8 @@ public class EventActivity extends Activity {
 
 	private LinearLayout registered;
 	private LinearLayout maybes;
+	
+	private File fileDir;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,8 @@ public class EventActivity extends Activity {
 		Intent intent = getIntent();
 		event = (Event) intent
 				.getSerializableExtra("dani.leahele.EkspSysApp.event");
+
+		fileDir = getFilesDir();
 
 		TextView title = (TextView) findViewById(R.id.event_title);
 		TextView date = (TextView) findViewById(R.id.event_date);
@@ -96,19 +97,19 @@ public class EventActivity extends Activity {
 	}
 
 	public void gotoHome(View view) {
-		saveEvent();
+		event.save(fileDir);
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoCalender(View view) {
-		saveEvent();
+		event.save(fileDir);
 		Intent intent = new Intent(this, CalenderActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoFun(View view) {
-		saveEvent();
+		event.save(fileDir);
 		Intent intent = new Intent(this, FunActivity.class);
 		startActivity(intent);
 	}
@@ -133,7 +134,7 @@ public class EventActivity extends Activity {
 		}
 		isRegistered = !isRegistered;
 
-		saveEvent();
+		event.save(fileDir);
 	}
 
 	public void signupMaybe(View view) {
@@ -157,25 +158,6 @@ public class EventActivity extends Activity {
 		}
 		isMaybe = !isMaybe;
 
-		saveEvent();
+		event.save(fileDir);
 	}
-
-	private void saveEvent() {
-		// Create file
-		File fileDir = getFilesDir();
-
-		File file = new File(fileDir, event.title);
-
-		// Save recipe in file
-		FileOutputStream fout;
-		try {
-			fout = new FileOutputStream(file);
-			ObjectOutputStream out = new ObjectOutputStream(fout);
-			out.writeObject(event);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }

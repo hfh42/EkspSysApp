@@ -52,11 +52,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 		title.setText(item.title);
 
 		for (String s : item.getRegistered()) {
-		/*	System.out.println("!!!!!! title: " + item.title);
-			System.out.println("!!!!!! owner: " + s.equals(Constants.OWNER));
-			System.out.println("!!!!!! tilmeldte: " + item.getRegistered());*/
 			if (s.equals(Constants.OWNER)) {
-				System.out.println("!!!!!! tilmeldt");
 				Typeface tf = Typeface.create("string", Typeface.BOLD);
 				title.setTypeface(tf);
 			}

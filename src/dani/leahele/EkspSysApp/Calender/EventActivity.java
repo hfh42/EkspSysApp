@@ -2,7 +2,6 @@ package dani.leahele.EkspSysApp.Calender;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
@@ -58,7 +57,7 @@ public class EventActivity extends Activity {
 		addTextViews(registered, event.getRegistered());
 		addTextViews(maybes, event.getMaybeRegistered());
 		
-		isMaybe = event.getRegistered().contains(Constants.OWNER);
+		isMaybe = event.getMaybeRegistered().contains(Constants.OWNER);
 		isRegistered = event.getRegistered().contains(Constants.OWNER);
 		
 		Button b = (Button) findViewById(R.id.event_signup);
@@ -122,8 +121,6 @@ public class EventActivity extends Activity {
 		}
 		isRegistered = !isRegistered;
 		
-		event.isMaybe = isMaybe;
-		event.isRegistered = isRegistered;
 		saveEvent();
 	}
 
@@ -148,34 +145,12 @@ public class EventActivity extends Activity {
 		}
 		isMaybe = !isMaybe;
 
-		event.isMaybe = isMaybe;
-		event.isRegistered = isRegistered;
 		saveEvent();
 	}
 
 	private void saveEvent() {
-		System.out.println("!!!!! Event " + event.title + ": " + event.getRegistered());
-		
 		// Create file
 		File fileDir = getFilesDir();
-		
-		System.out.println(" !!! next file dir " + getFilesDir());
-		
-		System.out.println("!!!!! files : " + fileDir.listFiles().length);
-		
-		File[] files = fileDir.listFiles(new FilenameFilter() {
-			
-			@Override
-			public boolean accept(File dir, String filename) {
-				return filename.equals(event.title);
-			}
-		});
-		if (files.length != 0) {
-			System.out.println("!!!! No such file");
-			for(File f : files){
-				f.delete();
-			}
-		}
 		
 		File file = new File(fileDir, event.title);
 
@@ -186,7 +161,6 @@ public class EventActivity extends Activity {
 			ObjectOutputStream out = new ObjectOutputStream(fout);
 			out.writeObject(event);
 			out.close();
-			System.out.println(" !! Writter file to disk !! ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

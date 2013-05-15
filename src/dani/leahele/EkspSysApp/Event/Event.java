@@ -15,8 +15,8 @@ public class Event implements Serializable{
 	public final int price;
 	public final String info;
 	
-	public boolean isRegistered;
-	public boolean isMaybe;
+//	public boolean isRegistered;
+	//public boolean isMaybe;
 		
 	private List<String> registered = new ArrayList<String>();
 	private List<String> maybes = new ArrayList<String>();

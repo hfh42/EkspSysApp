@@ -77,7 +77,6 @@ public class CalenderActivity extends Activity implements
 			return;
 		}
 		
-		System.out.println("!! creating events from scratch ");
 		Event e1 = new Event("Vin smagning", "3. juni", "kl. 15:00", "25. maj",
 				20, "Vi mødes foran Resturant Substabs kl. 14.50");
 		Event e2 = new Event("Fredagsbar", "20. juni", "kl. 14:00", "", 0,
@@ -96,8 +95,6 @@ public class CalenderActivity extends Activity implements
 	}
 
 	private void saveEvent(Event event) {
-		System.out.println("!!!!! Event " + event.title + ": "
-				+ event.getRegistered());
 
 		// Create file
 		File fileDir = getFilesDir();
@@ -126,27 +123,19 @@ public class CalenderActivity extends Activity implements
 	}
 
 	private void loadEvents() {
-		System.out.println("!!!!! load");
 		// Clear data
 		events = new ArrayList<Event>();
 
 		// Get saved files containing recipes
-		System.out.println("!!!! directory " + getFilesDir());
 		File fileDir = getFilesDir();
 		File[] files = fileDir.listFiles();
 
-		System.out.println("!!!! Calender num of files: " + files.length);
-		for (File f : files) {
-			System.out.println("!!!!! Calender files: " + f.getName());
-		}
-		
 		// Check whether there we have any files
 		if (files.length != 0) {
 			// Get the saved recipes and add them to the recipe list
 			FileInputStream fin;
 			try {
 				for (File f : files) {
-					System.out.println("!!!!! load files found");
 					fin = new FileInputStream(f);
 					ObjectInputStream in = new ObjectInputStream(fin);
 					Event e = (Event) in.readObject();

@@ -44,27 +44,39 @@ public class EventActivity extends Activity {
 		TextView time = (TextView) findViewById(R.id.event_time);
 		TextView signup = (TextView) findViewById(R.id.event_frist);
 		TextView info = (TextView) findViewById(R.id.event_info);
+		TextView price = (TextView) findViewById(R.id.event_price);
 
 		title.setText(event.title);
 		date.setText(event.date);
 		time.setText(event.time);
-		signup.setText(event.singupDate);
 		info.setText(event.info);
+
+		if (event.singupDate.equals("")) {
+			signup.setText("Ingen");
+		} else {
+			signup.setText(event.singupDate);
+		}
+
+		if (event.price == 0) {
+			price.setText("GRATIS");
+		} else {
+			price.setText("" + event.price + " kr.");
+		}
 
 		registered = (LinearLayout) findViewById(R.id.event_registered);
 		maybes = (LinearLayout) findViewById(R.id.event_registered_maybe);
 
 		addTextViews(registered, event.getRegistered());
 		addTextViews(maybes, event.getMaybeRegistered());
-		
+
 		isMaybe = event.getMaybeRegistered().contains(Constants.OWNER);
 		isRegistered = event.getRegistered().contains(Constants.OWNER);
-		
+
 		Button b = (Button) findViewById(R.id.event_signup);
-		if(isRegistered){
+		if (isRegistered) {
 			b.setText("Afmeld");
 		}
-		
+
 	}
 
 	private void addTextViews(LinearLayout ll, List<String> items) {
@@ -120,7 +132,7 @@ public class EventActivity extends Activity {
 			b.setText("Afmeld");
 		}
 		isRegistered = !isRegistered;
-		
+
 		saveEvent();
 	}
 
@@ -151,7 +163,7 @@ public class EventActivity extends Activity {
 	private void saveEvent() {
 		// Create file
 		File fileDir = getFilesDir();
-		
+
 		File file = new File(fileDir, event.title);
 
 		// Save recipe in file

@@ -1,5 +1,7 @@
 package dani.leahele.EkspSysApp;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,11 +16,13 @@ public class MainActivity extends Activity {
 	Boolean commentShown = false;
 	private static final int WriteComment = 3;
 	String newComment;
+	ArrayList<String> comments = new ArrayList<String>(); 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		hardCodedCommentsSvamp();
 	}
 
 	@Override
@@ -40,18 +44,19 @@ public class MainActivity extends Activity {
 
 	public void showCommentSvamp(View view) {
 		LinearLayout ll = (LinearLayout) findViewById(R.id.frag_home_comments);
-		TextView comment = new TextView(this);
-		TextView comment2 = new TextView(this);
 		TextView commentsStatus = (TextView) findViewById(R.id.frag_home_show_comment_svamp);
 		LinearLayout.LayoutParams params;
+		
+		int color = Color.parseColor("#EBDDE2");
+		
 		if (commentShown == false) {
-			comment.setText("LUISE JENSEN : Rigtig dejlig tur :)");
-			int c = Color.parseColor("#EBDDE2");
-			comment.setBackgroundColor(c);
-			comment2.setText("MADS PEDERSEN: Ja, super arrangement");
-			comment2.setBackgroundColor(c);
-			ll.addView(comment);
-			ll.addView(comment2);
+			for (String s : comments){
+				TextView c = new TextView(this);
+				c.setText(s);
+				c.setBackgroundColor(color);
+				ll.addView(c);
+			}
+			
 			commentsStatus.setText("Skjul kommentar");
 			params = new LinearLayout.LayoutParams(
 					LinearLayout.LayoutParams.MATCH_PARENT,
@@ -65,9 +70,15 @@ public class MainActivity extends Activity {
 			params = new LinearLayout.LayoutParams(0, 0);
 			ll.setLayoutParams(params);
 			commentShown = false;
-
 		}
 
+	}
+	
+	public void hardCodedCommentsSvamp(){
+		String c1Svamp = new String("LUISE JENSEN : Rigtig dejlig tur :)");
+		String c2Svamp = new String("MADS PEDERSEN: Ja, super arrangement");
+		comments.add(c1Svamp);
+		comments.add(c2Svamp);
 	}
 
 	public void writeCommentSvamp(View view) {
@@ -76,32 +87,14 @@ public class MainActivity extends Activity {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println("onActivityResult");
 		if (requestCode == WriteComment) {
-			System.out.println("request code");
 			if (resultCode == RESULT_OK) {
-				System.out.println("result code");
 				final String newComment = data
 						.getStringExtra("dani.leahele.EkspSysApp.comment");
-				this.newComment = newComment;
-
-				LinearLayout ll = (LinearLayout) findViewById(R.id.frag_home_comments);
-				TextView comment = new TextView(this);
-				if (commentShown == false) {
-					showCommentSvamp(comment);
-					comment.setText(newComment);
-					int c = Color.parseColor("#EBDDE2");
-					comment.setBackgroundColor(c);
-					ll.addView(comment);
-				} else {
-					comment.setText(newComment);
-					int c = Color.parseColor("#EBDDE2");
-					comment.setBackgroundColor(c);
-					ll.addView(comment);
-
-				}
+				comments.add(newComment);
+				LinearLayout ll = (LinearLayout) findViewById(R.id.frag_home_comments);	
+				showCommentSvamp(new View(this));	
 			}
 		}
 	}
-
 }

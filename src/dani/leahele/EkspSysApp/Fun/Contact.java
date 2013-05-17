@@ -1,5 +1,9 @@
 package dani.leahele.EkspSysApp.Fun;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Contact implements Serializable, Comparable<Contact> {
@@ -57,6 +61,23 @@ public class Contact implements Serializable, Comparable<Contact> {
 		} else {
 			// other is favorite
 			return 1;
+		}
+	}
+	
+	public void save(File fileDir) {
+
+		// Create file
+		File file = new File(fileDir, name);
+
+		// Save event in file
+		FileOutputStream fout;
+		try {
+			fout = new FileOutputStream(file);
+			ObjectOutputStream out = new ObjectOutputStream(fout);
+			out.writeObject(this);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

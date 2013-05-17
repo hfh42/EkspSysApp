@@ -2,6 +2,7 @@ package dani.leahele.EkspSysApp.Calender;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,8 +37,7 @@ public class CalenderActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calender);
-		
-		createHardcodedEvents();
+
 		fragmentManager = getFragmentManager();
 
 		eventfrag = (EventListFragment) fragmentManager
@@ -68,32 +68,6 @@ public class CalenderActivity extends Activity implements
 		startActivity(intent);
 	}
 
-	private void createHardcodedEvents() {
-		File folder = getFilesDir();
-		if(folder.list().length > 0){
-			return;
-		}
-		
-		Event e1 = new Event("Vin smagning", "3. juni",154, "kl. 15:00", "25. maj",
-				20, "Vi mødes foran Resturant Substabs kl. 14.50");
-		Event e2 = new Event("Fredagsbar", "20. juni",171, "kl. 14:00", "", 0,
-				"Fredags cafe ;)");
-
-		e1.register("Louise Jensen");
-		e1.register("Niels Hansen");
-		e2.register("Martin Winter");
-		e1.maybeRegister("Lone Larsen");
-		e2.maybeRegister("George Gren");
-
-		events.add(e1);
-		events.add(e2);
-		Collections.sort(events);
-
-		File fileDir = getFilesDir();
-		e1.save(fileDir);
-		e2.save(fileDir);
-	}
-
 	@Override
 	public void onEventSelected(int position) {
 		Intent intent = new Intent(this, EventActivity.class);
@@ -108,26 +82,43 @@ public class CalenderActivity extends Activity implements
 		// Clear data
 		events = new ArrayList<Event>();
 
-		// Get saved files containing recipes
 		File fileDir = getFilesDir();
-		File[] files = fileDir.listFiles();
+		File[] files1 = fileDir.listFiles(new FilenameFilter() {
+
+			@Override
+			public boolean accept(File dir, String filename) {
+				return filename.equals("events");
+			}
+		});
 
 		// Check whether there we have any files
-		if (files.length != 0) {
-			// Get the saved recipes and add them to the recipe list
-			FileInputStream fin;
-			try {
-				for (File f : files) {
-					fin = new FileInputStream(f);
-					ObjectInputStream in = new ObjectInputStream(fin);
-					Event e = (Event) in.readObject();
-					in.close();
-					events.add(e);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if (files1.length == 0) {
+			System.out.println("ERROR: eventsDir does not exists");
+			return;
 		}
+
+		File contactsDir = files1[0];
+		File[] files2 = contactsDir.listFiles();
+
+		if (files2.length == 0) {
+			System.out.println("ERROR: no events");
+			return;
+		}
+
+		// Get the saved recipes and add them to the recipe list
+		FileInputStream fin;
+		try {
+			for (File f : files2) {
+				fin = new FileInputStream(f);
+				ObjectInputStream in = new ObjectInputStream(fin);
+				Event e = (Event) in.readObject();
+				in.close();
+				events.add(e);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		Collections.sort(events);
 		eventfrag.setEventList(events);
 	}

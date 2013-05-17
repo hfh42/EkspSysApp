@@ -1,5 +1,9 @@
 package dani.leahele.EkspSysApp.Fun;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FilenameFilter;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,9 +27,9 @@ import dani.leahele.EkspSysApp.Fun.ContactListFragment.OnContactSelectedListener
 public class FunActivity extends Activity implements OnContactSelectedListener {
 
 	private List<Contact> contacts = new ArrayList<Contact>();
-	
+
 	private ContactListFragment contactfrag;
-	
+
 	private static final int NORMAL_CLICK = 1;
 	private static final int LONG_CLICK = 2;
 
@@ -34,7 +38,6 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fun);
 
-		createHardCodedContacts();
 		FragmentManager fragmentManager = getFragmentManager();
 
 		contactfrag = (ContactListFragment) fragmentManager
@@ -51,15 +54,21 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 	@Override
 	public void onStart() {
 		super.onStart();
-		contactfrag.setContactList(contacts);
+		loadContacts();
 	}
 
 	public void gotoHome(View view) {
+		for (Contact c : contacts) {
+			c.save(getFilesDir());
+		}
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoCalender(View view) {
+		for (Contact c : contacts) {
+			c.save(getFilesDir());
+		}
 		Intent intent = new Intent(this, CalenderActivity.class);
 		startActivity(intent);
 	}
@@ -77,41 +86,55 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 			Collections.sort(contacts);
 			contactfrag.setContactList(contacts);
 		}
+
+		for (Contact c : contacts) {
+			c.save(getFilesDir());
+		}
 	}
 
-	private void createHardCodedContacts() {
-		Contact c1 = new Contact("Louise Jensen", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-		c1.setFavorite();
+	private void loadContacts() {
+		// Clear data
+		contacts = new ArrayList<Contact>();
 
-		Contact c2 = new Contact("Niels Hansen", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-		c2.setFavorite();
-		c2.setOnline(true);
+		File fileDir = getFilesDir();
+		File[] files1 = fileDir.listFiles(new FilenameFilter() {
 
-		Contact c3 = new Contact("Martin Winter", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-		c3.setFavorite();
+			@Override
+			public boolean accept(File dir, String filename) {
+				return filename.equals("contacts");
+			}
+		});
 
-		Contact c4 = new Contact("Lone Larsen", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-		c4.setOnline(true);
+		// Check whether there we have any files
+		if (files1.length == 0) {
+			System.out.println("ERROR: contactsDir does not exists");
+			return;
+		}
 
-		Contact c5 = new Contact("George Gren", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-		c5.setOnline(true);
+		File contactsDir = files1[0];
+		File[] files2 = contactsDir.listFiles();
+		
+		if(files2.length == 0){
+			System.out.println("ERROR: no contacts");
+			return;
+		}
 
-		Contact c6 = new Contact("Lykke Berg", R.drawable.smiley_online,
-				R.drawable.smiley_offline);
-
-		contacts.add(c1);
-		contacts.add(c2);
-		contacts.add(c3);
-		contacts.add(c4);
-		contacts.add(c5);
-		contacts.add(c6);
+		// Get the saved recipes and add them to the recipe list
+		FileInputStream fin;
+		try {
+			for (File f : files1) {
+				fin = new FileInputStream(f);
+				ObjectInputStream in = new ObjectInputStream(fin);
+				Contact c = (Contact) in.readObject();
+				in.close();
+				contacts.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		Collections.sort(contacts);
+		contactfrag.setContactList(contacts);
 	}
 
 }

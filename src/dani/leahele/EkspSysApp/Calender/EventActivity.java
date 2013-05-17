@@ -12,10 +12,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import dani.leahele.EkspSysApp.Constants;
-import dani.leahele.EkspSysApp.FunActivity;
 import dani.leahele.EkspSysApp.MainActivity;
 import dani.leahele.EkspSysApp.R;
-import dani.leahele.EkspSysApp.Event.Event;
+import dani.leahele.EkspSysApp.Fun.FunActivity;
 
 public class EventActivity extends Activity {
 	private Event event;

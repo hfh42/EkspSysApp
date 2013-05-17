@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import dani.leahele.EkspSysApp.Constants;
 import dani.leahele.EkspSysApp.R;
-import dani.leahele.EkspSysApp.Event.Event;
 
 public class EventAdapter extends ArrayAdapter<Event> {
 	private final LayoutInflater mInflater;

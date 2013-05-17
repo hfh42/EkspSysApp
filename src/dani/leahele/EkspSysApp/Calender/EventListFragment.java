@@ -2,7 +2,6 @@ package dani.leahele.EkspSysApp.Calender;
 
 import java.util.List;
 
-import dani.leahele.EkspSysApp.Event.Event;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ListFragment;
@@ -35,14 +34,13 @@ public class EventListFragment extends ListFragment {
 			mListener = (OnEventSelectedListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString()
-					+ " must implement OnRecipeSelectedListener");
+					+ " must implement OnEventSelectedListener");
 		}
 	}
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		getListView().setItemChecked(position, true);
-		// Send the event and recipe name to the host activity
 		mListener.onEventSelected(position);
 	}
 	

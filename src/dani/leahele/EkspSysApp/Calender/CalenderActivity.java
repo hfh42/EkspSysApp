@@ -15,11 +15,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import dani.leahele.EkspSysApp.FunActivity;
 import dani.leahele.EkspSysApp.MainActivity;
 import dani.leahele.EkspSysApp.R;
 import dani.leahele.EkspSysApp.Calender.EventListFragment.OnEventSelectedListener;
-import dani.leahele.EkspSysApp.Event.Event;
+import dani.leahele.EkspSysApp.Fun.FunActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class CalenderActivity extends Activity implements

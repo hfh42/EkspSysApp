@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dani.leahele.EkspSysApp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="dani.leahele.EkspSysApp.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="dani.leahele.EkspSysApp.Calender.CalenderActivity"
+            android:label="@string/title_activity_calender" >
+        </activity>
+        <activity
+            android:name="dani.leahele.EkspSysApp.FunActivity"
+            android:label="@string/title_activity_fun" >
+        </activity>
+        <activity
+<<<<<<< HEAD
+            android:name="dani.leahele.EkspSysApp.WriteActivity"
+            android:label="@string/title_activity_write" >
+=======
+            android:name="dani.leahele.EkspSysApp.Calender.EventActivity"
+            android:label="@string/title_activity_event" >
+>>>>>>> Added Event list i calender
+        </activity>
+    </application>
+
+</manifest>

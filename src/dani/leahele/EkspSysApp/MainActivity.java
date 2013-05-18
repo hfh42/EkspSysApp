@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 		showSvampCommentButton = (TextView) findViewById(R.id.frag_home_show_comment_svamp);
 		
 		bioll = (LinearLayout) findViewById(R.id.frag_home_comments_bio);
-		showBioCommentButton = (TextView) findViewById(R.id.frag_home_show_comment_svamp);
+		showBioCommentButton = (TextView) findViewById(R.id.frag_home_show_comment_bio);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package dani.leahele.EkspSysApp;
 
+import dani.leahele.EkspSysApp.Calender.CalenderActivity;
+import dani.leahele.EkspSysApp.Fun.FunActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,8 +24,22 @@ public class WriteActivity extends Activity {
 		return true;
 	}
 	
+	public void gotoHome(View view) {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+	}
+
+	public void gotoCalender(View view) {
+		Intent intent = new Intent(this, CalenderActivity.class);
+		startActivity(intent);
+	}
+
+	public void gotoFun(View view) {
+		Intent intent = new Intent(this, FunActivity.class);
+		startActivity(intent);
+	}
+	
 	public void sendComment(View view){
-		System.out.println("!!!!!!! test");
 		TextView comment = (TextView) findViewById(R.id.write_comment);
 		String s = comment.getText().toString();
 		Intent i = new Intent();

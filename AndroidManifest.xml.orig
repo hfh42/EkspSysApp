@@ -27,16 +27,17 @@
             android:label="@string/title_activity_calender" >
         </activity>
         <activity
-            android:name="dani.leahele.EkspSysApp.Fun.FunActivity"
+            android:name="dani.leahele.EkspSysApp.FunActivity"
             android:label="@string/title_activity_fun" >
         </activity>
         <activity
-            android:name="dani.leahele.EkspSysApp.Calender.EventActivity"
-            android:label="@string/title_activity_event" >
-        </activity>
-        <activity
+<<<<<<< HEAD
             android:name="dani.leahele.EkspSysApp.WriteActivity"
             android:label="@string/title_activity_write" >
+=======
+            android:name="dani.leahele.EkspSysApp.Calender.EventActivity"
+            android:label="@string/title_activity_event" >
+>>>>>>> Added Event list i calender
         </activity>
     </application>
 

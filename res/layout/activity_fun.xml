@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
     android:orientation="vertical"
+    android:paddingBottom="2dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp"
+    android:background="#79BAEC"
     tools:context=".FunActivity" >
-
 
     <LinearLayout
         android:id="@+id/main_ikons"
@@ -20,33 +20,34 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/home"
-            android:onClick="gotoHome" />
+            android:onClick="gotoHome"
+            android:background="@drawable/home" />
 
         <Button
             android:id="@+id/main_calender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/calender"
-            android:onClick="gotoCalender" />
+            android:onClick="gotoCalender"
+            android:background="@drawable/calender"/>
 
         <Button
             android:id="@+id/main_fun"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fun"/>
+            android:background="@drawable/fun" />
     </LinearLayout>
-    
-    <View 
+
+    <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="#000000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <fragment
+        android:id="@+id/fun_list_fragment"
+        android:name="dani.leahele.EkspSysApp.Fun.ContactListFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>

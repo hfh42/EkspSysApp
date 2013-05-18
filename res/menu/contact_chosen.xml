@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:title="Chat"/>
+    <item android:title="Spil"/>
+    <item 
+        android:id="@+id/contact_menu_favorit"
+        android:title="Tilføj/Fjern favorit" />
+
+</menu>

@@ -26,7 +26,7 @@ public class EventActivity extends Activity {
 	private LinearLayout registered;
 	private LinearLayout maybes;
 	
-	private File fileDir;
+	private File eventsDir;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,8 @@ public class EventActivity extends Activity {
 		event = (Event) intent
 				.getSerializableExtra("dani.leahele.EkspSysApp.event");
 
-		fileDir = getFilesDir();
+		File fileDir = getFilesDir();
+		eventsDir = new File(fileDir, "events");
 
 		TextView title = (TextView) findViewById(R.id.event_title);
 		TextView date = (TextView) findViewById(R.id.event_date);
@@ -96,19 +97,19 @@ public class EventActivity extends Activity {
 	}
 
 	public void gotoHome(View view) {
-		event.save(fileDir);
+		event.save(eventsDir);
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoCalender(View view) {
-		event.save(fileDir);
+		event.save(eventsDir);
 		Intent intent = new Intent(this, CalenderActivity.class);
 		startActivity(intent);
 	}
 
 	public void gotoFun(View view) {
-		event.save(fileDir);
+		event.save(eventsDir);
 		Intent intent = new Intent(this, FunActivity.class);
 		startActivity(intent);
 	}
@@ -133,7 +134,7 @@ public class EventActivity extends Activity {
 		}
 		isRegistered = !isRegistered;
 
-		event.save(fileDir);
+		event.save(eventsDir);
 	}
 
 	public void signupMaybe(View view) {
@@ -157,6 +158,6 @@ public class EventActivity extends Activity {
 		}
 		isMaybe = !isMaybe;
 
-		event.save(fileDir);
+		event.save(eventsDir);
 	}
 }

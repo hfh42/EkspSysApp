@@ -29,6 +29,8 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 	private List<Contact> contacts = new ArrayList<Contact>();
 
 	private ContactListFragment contactfrag;
+	
+	private File contactsDir;
 
 	private static final int NORMAL_CLICK = 1;
 	private static final int LONG_CLICK = 2;
@@ -37,6 +39,8 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fun);
+		
+		contactsDir = new File(getFilesDir(), "contacts");
 
 		FragmentManager fragmentManager = getFragmentManager();
 
@@ -59,7 +63,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 
 	public void gotoHome(View view) {
 		for (Contact c : contacts) {
-			c.save(getFilesDir());
+			c.save(contactsDir);
 		}
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
@@ -67,7 +71,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 
 	public void gotoCalender(View view) {
 		for (Contact c : contacts) {
-			c.save(getFilesDir());
+			c.save(contactsDir);
 		}
 		Intent intent = new Intent(this, CalenderActivity.class);
 		startActivity(intent);
@@ -88,7 +92,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		}
 
 		for (Contact c : contacts) {
-			c.save(getFilesDir());
+			c.save(contactsDir);
 		}
 	}
 
@@ -122,7 +126,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		// Get the saved recipes and add them to the recipe list
 		FileInputStream fin;
 		try {
-			for (File f : files1) {
+			for (File f : files2) {
 				fin = new FileInputStream(f);
 				ObjectInputStream in = new ObjectInputStream(fin);
 				Contact c = (Contact) in.readObject();
@@ -135,6 +139,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 
 		Collections.sort(contacts);
 		contactfrag.setContactList(contacts);
+		System.out.println("Fun, load, contacts: " + contacts);
 	}
 
 }

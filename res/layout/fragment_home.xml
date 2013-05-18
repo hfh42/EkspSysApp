@@ -12,117 +12,62 @@
             android:id="@+id/frag_home_next_event"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="10dp"
-            android:background="#FFFFFF" >
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/next_event"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp" />
-            
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/next_event_title" 
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginTop="10dp"
+                android:text="@string/next_event" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/next_event_date"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:text="@string/next_event_title" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/next_event_7_tilmeldte"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:text="@string/next_event_date" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/next_event_tilmeld"
-                android:layout_marginLeft="10dp" 
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:text="@string/next_event_7_tilmeldte" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/next_event_tilmeld" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/go" />
+                android:text="@string/go"
+                android:onClick="goToEvent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/frag_home_svamp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" 
             android:layout_margin="10dp"
-            android:background="#FFFFFF" >
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Svampe tur" 
-                android:layout_margin="10dp"/>
-
-            <ImageView
-                    android:layout_width="fill_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/svamp02" />
-            
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" 
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:id="@+id/frag_home_show_comment_svamp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="showCommentSvamp"
-                    android:clickable="true"
-                    android:text="@string/show_comment" 
-                    android:layout_alignParentLeft="true"/>
-                
-                <ImageButton
-                    android:background="@drawable/pencil"
-                    android:id="@+id/frag_home_write_comments_svamp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:onClick="writeCommentSvamp" 
-                    android:clickable="true" 
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-            
-            <LinearLayout 
-                android:id="@+id/frag_home_comments" 
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical">
-                
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/frag_home_bio"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF" >
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Biograf tur" 
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:text="Svampe tur" />
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -131,28 +76,91 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" 
-                android:layout_margin="10dp">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" >
+
+                <TextView
+                    android:id="@+id/frag_home_show_comment_svamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:clickable="true"
+                    android:onClick="showCommentSvamp"
+                    android:text="@string/show_comment" />
+
+                <ImageButton
+                    android:id="@+id/frag_home_write_comments_svamp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/pencil"
+                    android:clickable="true"
+                    android:onClick="writeCommentSvamp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/frag_home_comments_svamp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frag_home_bio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Biograf tur" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/svamp02" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" >
 
                 <TextView
                     android:id="@+id/frag_home_show_comment_bio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="showCommentBio"
+                    android:layout_alignParentLeft="true"
                     android:clickable="true"
-                    android:text="@string/show_comment" 
-                    android:layout_alignParentLeft="true"/>
-                
+                    android:onClick="showCommentBio"
+                    android:text="@string/show_comment" />
+
                 <ImageButton
-                    android:background="@drawable/pencil"
                     android:id="@+id/frag_home_write_comments_bio"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:onClick="writeCommentBio" 
-                    android:clickable="true" 
-                    android:layout_alignParentRight="true"/>
-
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/pencil"
+                    android:clickable="true"
+                    android:onClick="writeCommentBio" />
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/frag_home_comments_bio"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical" >
+            </LinearLayout>
         </LinearLayout>
 
         <View

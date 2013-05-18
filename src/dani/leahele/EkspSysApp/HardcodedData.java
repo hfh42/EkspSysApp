@@ -1,6 +1,9 @@
 package dani.leahele.EkspSysApp;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,16 +12,19 @@ import dani.leahele.EkspSysApp.Calender.Event;
 import dani.leahele.EkspSysApp.Fun.Contact;
 
 public class HardcodedData {
+	
+	private File fileDir;
 
 	private List<Contact> contacts = new ArrayList<Contact>();
 	private List<Event> events = new ArrayList<Event>();
+	private List<String> commentsSvamp = new ArrayList<String>(); 
+	private List<String> commentsBio = new ArrayList<String>(); 
 
 	public HardcodedData(File fileDir) {
-		File[] files = fileDir.listFiles();
-		if(files.length > 0){
-			return;
-		}
-		
+		this.fileDir = fileDir;
+				
+		createHardcodedCommentsSvamp();
+		createHardcodedCommentsBio();
 		createHardcodedContacts();
 		createHardcodedEvents();
 
@@ -33,6 +39,27 @@ public class HardcodedData {
 		for(Event e : events){
 			e.save(eventsDir);
 		}
+		
+		saveComments(commentsSvamp, Constants.SVAMP_COM);
+		saveComments(commentsBio, Constants.BIO_COM);
+	}
+	
+	
+	private void createHardcodedCommentsSvamp(){
+		String c1Svamp = new String("LUISE JENSEN: Rigtig dejlig tur :)");
+		String c2Svamp = new String("MADS PEDERSEN: Ja, super arrangement");
+		commentsSvamp.add(c1Svamp);
+		commentsSvamp.add(c2Svamp);
+	}
+	
+
+	private void createHardcodedCommentsBio(){
+		String c1 = new String("NIELS HANSEN: Fed film, glæder mig til 2'eren");
+		String c2 = new String("MADS PEDERSEN: Ja, og fantastisk med uventet plot");
+		String c3 = new String("LONE LARSEN: Dejligt med så mange deltager");
+		commentsBio.add(c1);
+		commentsBio.add(c2);
+		commentsBio.add(c3);
 	}
 
 	private void createHardcodedEvents() {
@@ -85,5 +112,23 @@ public class HardcodedData {
 		contacts.add(c6);
 
 		Collections.sort(contacts);
+	}
+	
+	
+	private void saveComments(List<String> comments, String name) {
+		// Create file
+		File recipefile = new File(fileDir, name);
+
+		// Save comments in file
+		FileOutputStream fout;
+		try {
+			fout = new FileOutputStream(recipefile);
+			ObjectOutputStream out = new ObjectOutputStream(fout);
+			out.writeObject(comments);
+			out.close();
+			System.out.println("Hardcode, comments saved");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

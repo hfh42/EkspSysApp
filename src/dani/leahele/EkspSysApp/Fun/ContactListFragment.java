@@ -7,18 +7,17 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ContactListFragment extends ListFragment {
 	private OnContactSelectedListener mListener;
 	private ContactAdapter adapter;
-
-	private static final int NORMAL_CLICK = 1;
-	private static final int LONG_CLICK = 2;
 	
 	public void setContactList(List<Contact> contacts){		
 		setListAdapter(adapter);
@@ -37,16 +36,6 @@ public class ContactListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedState){
 		super.onActivityCreated(savedState);
 		
-		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-
-				mListener.onContactSelected(arg2,LONG_CLICK,null);
-				return true;
-			}
-		});
 	}
 	
 	@Override
@@ -63,10 +52,11 @@ public class ContactListFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		getListView().setItemChecked(position, true);
-		mListener.onContactSelected(position,NORMAL_CLICK, v);
+		mListener.onContactSelected(position, v);
 	}
 	
 	public interface OnContactSelectedListener{
-		public void onContactSelected(int position, int type, View view);
+		public void onContactSelected(int position, View view);
 	}
+
 }

@@ -19,19 +19,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import dani.leahele.EkspSysApp.MainActivity;
 import dani.leahele.EkspSysApp.R;
 import dani.leahele.EkspSysApp.Calender.CalenderActivity;
 import dani.leahele.EkspSysApp.Fun.ContactListFragment.OnContactSelectedListener;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class FunActivity extends Activity implements OnContactSelectedListener {
+public class FunActivity extends Activity implements OnContactSelectedListener,
+		OnMenuItemClickListener {
 
 	private List<Contact> contacts = new ArrayList<Contact>();
 
 	private ContactListFragment contactfrag;
-	
+
 	private File contactsDir;
+
+	private int position = -1;
 
 	private static final int NORMAL_CLICK = 1;
 	private static final int LONG_CLICK = 2;
@@ -40,7 +44,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fun);
-		
+
 		contactsDir = new File(getFilesDir(), "contacts");
 
 		FragmentManager fragmentManager = getFragmentManager();
@@ -55,7 +59,6 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		getMenuInflater().inflate(R.menu.fun, menu);
 		return true;
 	}
-	
 
 	@Override
 	public void onStart() {
@@ -79,22 +82,32 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		startActivity(intent);
 	}
 
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
-	public void onContactSelected(int position, int type, View view) {
-		if (type == NORMAL_CLICK) {
+	public void onContactSelected(int position, View view) {
+			this.position = position;
 			PopupMenu popup = new PopupMenu(this, view);
-			MenuInflater inflater = popup.getMenuInflater();
-			inflater.inflate(R.menu.contact_chosen, popup.getMenu());
+			popup.setOnMenuItemClickListener(this);
+			popup.inflate(R.menu.contact_chosen);
 			popup.show();
-		} else if (type == LONG_CLICK) {
+	}
+
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.contact_menu_favorit:
 			Contact c = contacts.get(position);
 			c.setFavorite();
 			Collections.sort(contacts);
 			contactfrag.setContactList(contacts);
-		}
 
-		for (Contact c : contacts) {
-			c.save(contactsDir);
+			for (Contact con : contacts) {
+				con.save(contactsDir);
+			}
+			
+			return true;
+		default:
+			return false;
 		}
 	}
 
@@ -119,8 +132,8 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 
 		File contactsDir = files1[0];
 		File[] files2 = contactsDir.listFiles();
-		
-		if(files2.length == 0){
+
+		if (files2.length == 0) {
 			System.out.println("ERROR: no contacts");
 			return;
 		}

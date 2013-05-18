@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import dani.leahele.EkspSysApp.MainActivity;
@@ -54,6 +55,7 @@ public class FunActivity extends Activity implements OnContactSelectedListener {
 		getMenuInflater().inflate(R.menu.fun, menu);
 		return true;
 	}
+	
 
 	@Override
 	public void onStart() {

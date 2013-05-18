@@ -73,7 +73,7 @@
         <EditText
             android:id="@+id/write_comment"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/write_button"
             android:layout_margin="5dp" />
     </RelativeLayout>

@@ -128,8 +128,8 @@
 
                 <ImageButton
                     android:id="@+id/frag_home_write_comments_svamp"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/pencil"
                     android:clickable="true"
@@ -184,8 +184,8 @@
 
                 <ImageButton
                     android:id="@+id/frag_home_write_comments_bio"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/pencil"
                     android:clickable="true"

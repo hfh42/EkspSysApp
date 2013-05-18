@@ -3,5 +3,8 @@
 
     <item android:title="Chat"/>
     <item android:title="Spil"/>
+    <item 
+        android:id="@+id/contact_menu_favorit"
+        android:title="Tilføj/Fjern favorit" />
 
 </menu>
